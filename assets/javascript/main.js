@@ -8,12 +8,14 @@ var config = {
   };
 
 firebase.initializeApp(config);
-
+var audio = new Audio("assets/images/trains003.mp3");
+audio.volume = 0.2;
 var database = firebase.database();
 
 $("#add-train").on("click", function() {
 	 //event.preventDefault();
 	 
+
 	 database.ref().push({
         name: $("#name-input").val(),
         des: $("#des-input").val(),
@@ -27,6 +29,8 @@ $("#add-train").on("click", function() {
 	 $("#ftt-input").val("");
 	 $("#freq-input").val("");
 });
+
+	audio.play();
 
 database.ref().on("child_added", function(childSnapshot) {
 
@@ -73,3 +77,6 @@ database.ref().on("child_added", function(childSnapshot) {
     }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
     });
+
+
+

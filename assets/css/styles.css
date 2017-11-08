@@ -1,0 +1,35 @@
+	.jumbotron {
+		text-align: center;
+		border: solid 5px;
+		border-color: #c3bbb1;
+		background-image: url("assets/images/train.jpg");
+		color: salmon;
+	}
+	.panel, .btn {
+		border: solid 3px;
+		border-color: #c3bbb1;
+	}
+	.panel-default>.panel-heading,
+	.btn {
+		background-color: salmon;
+		color: white;
+	}
+	.panel-default>.panel-heading  {
+		border-bottom: solid 3px;
+		border-color: #c3bbb1;
+	}
+	p {
+		color: salmon; 
+	}
+	#color {
+		background-color: #bee0fd;
+	}
+	.form-control:hover {
+		background-color: #bee0fd;
+	}
+	.form-group {
+		color: #1e2128;
+	}
+	#add-train {
+		font-style: bold;
+	}

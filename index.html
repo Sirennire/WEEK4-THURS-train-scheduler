@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Train Scheduler</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  	<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -14,6 +16,9 @@
 		border-color: #c3bbb1;
 		background-image: url("assets/images/train.jpg");
 		color: salmon;
+	}
+	h1, h2, p {
+		text-shadow: 2px 2px #000000;
 	}
 	.panel, .btn {
 		border: solid 3px;
@@ -27,23 +32,21 @@
 	.panel-default>.panel-heading  {
 		border-bottom: solid 3px;
 		border-color: #c3bbb1;
+		text-align: center;
 	}
 	p {
 		color: salmon; 
 	}
 	#color {
 		background-color: #bee0fd;
+		font-style: bold;
 	}
 	.form-control:hover {
 		background-color: #bee0fd;
 	}
-	.form-group {
-		color: #1e2128;
-	}
 	#add-train {
 		font-style: bold;
 	}
-
 	</style>
 
 </head>
@@ -52,7 +55,7 @@
 <div class="container"><br>
 	<div class="jumbotron">
   		<h1>Anytime is Train Time</h1>
-  		<p><strong>Choo Choo. Wee Wee.</strong></p>
+  		<p><strong>Chugga Chugga Choo Choo</strong></p>
 	</div>
 
 	<div class="row">
@@ -62,11 +65,11 @@
 
 				<table class="table table-striped">
 					<tr id="color">
-						<th>Train Name</th>
-						<th>Destination</th>
-						<th>Frequency (Min)</th>
-						<th>Next Arrival</th>
-						<th>Minutes Away</th>
+						<th><strong>Train Name</strong></th>
+						<th><strong>Destination</strong></th>
+						<th><strong>Frequency (Min)</strong></th>
+						<th><strong>Next Arrival</strong></th>
+						<th><strong>Minutes Away</strong></th>
 					</tr>
 					<tr>
 					</tr>
@@ -111,6 +114,4 @@
  	<script src="moment.js"></script>
  	<script src="assets/javascript/main.js"></script>
 </body>
-
-
 </html>
