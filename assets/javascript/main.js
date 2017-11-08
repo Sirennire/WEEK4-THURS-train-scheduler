@@ -9,11 +9,10 @@ var config = {
 
 firebase.initializeApp(config);
 
-// Create a variable to reference the database.
 var database = firebase.database();
 
-$("#add-train").on("click", function(event) {
-	 event.preventDefault();
+$("#add-train").on("click", function() {
+	 //event.preventDefault();
 	 
 	 database.ref().push({
         name: $("#name-input").val(),
@@ -27,44 +26,50 @@ $("#add-train").on("click", function(event) {
 	 $("#des-input").val("");
 	 $("#ftt-input").val("");
 	 $("#freq-input").val("");
-	 //console.log($("#ftt-input").val());
-
 });
 
 database.ref().on("child_added", function(childSnapshot) {
-	//console.log(childSnapshot.val().fft);
-	//console.log(childSnapshot.val().freq)
-	console.log(then);
-	var hours = parseInt(childSnapshot.val().ftt); 
 
-	var now = new Date().getTime();
-	var then = new Date().getTime(childSnapshot.val().ftt);
-	var mins = then - now; 
+	var now = moment();
+	var then = moment(childSnapshot.val().ftt, "hh:mm");
+	var now2 = Math.round(now/1000/60);
+	var then2 = Math.round(then/1000/60);
 
+	if (then < now) {
+		min = Math.round(now-then)/1000/60; 
+		f = childSnapshot.val().freq;
+		m = f-(Math.round(min%f));
+	}
 
-	//var then2 = new Date(childSnapshot.val().date).getTime(); 
-	//var numMil = now - then2; 
-	//var months = Math.round(numMil/1000/60/60/24/30.42);
-	//var billed = months * (childSnapshot.val().rate);
-	//console.log(months);
-	//console.log(billed);
+	else if (then === now) {
+		m = childSnapshot.val().freq
+	}
 
-      // Log everything that's coming out of snapshot
-      //console.log(now);
-      //console.log(then);
-      //console.log(mins);
-      //console.log(childSnapshot.val().rate);
+	else {
+		min = Math.round(then - now)/1000/60; 
+		f = childSnapshot.val().freq;
+		m = Math.round(min%f);
+		//min2 = then2-now2;
+		//m2 = (min2%f);
+		//console.log(m2, m);
+	}
 
-      // full list of items to the well
-      $(".table").append("<tr><td> " + childSnapshot.val().name +
+	var endDate = moment();
+	var startDate = moment(endDate).subtract(1, 'days');
+
+	var ss = moment().subtract(1,'days').add(m, "m").format('h:mm A');
+	var ss2 = moment().subtract(1,'days').add(m, "m").add(1, 'days').format('MM D YYYY h:mm A');
+	
+	var ss3 = moment().subtract(1,'days').add(m, "m").add(1, 'days').format('D');
+	var ss4 = moment().format('D');
+
+	$(".table").append("<tr><td> " + childSnapshot.val().name +
         " </td><td> " + childSnapshot.val().des +
         " </td><td> " + childSnapshot.val().freq +
-        " </td><td> " + mins +
-      	" </td><td> " + mins +
+        " </td><td> " + ss +
+      	" </td><td> " + m +
       	" </td></tr>");
-      	//console.log(childSnapshot.val().name, childSnapshot.val().des);
 
-    // Handle the errors
     }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
     });
