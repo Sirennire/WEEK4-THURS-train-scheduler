@@ -2,8 +2,9 @@
 		text-align: center;
 		border: solid 5px;
 		border-color: #c3bbb1;
-		background-image: url("assets/images/train.jpg");
+		background-image: url("../images/train.jpg");
 		color: salmon;
+		text-shadow: 2px 2px 4px #000000;
 	}
 	.panel, .btn {
 		border: solid 3px;
